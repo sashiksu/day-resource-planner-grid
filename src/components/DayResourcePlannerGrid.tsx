@@ -7,13 +7,14 @@ interface DayResourcePlannerGridProps {
   startTime: number;
   endTime: number;
 }
+
 const DayResourcePlannerGrid = (props: DayResourcePlannerGridProps) => {
   const { resources, events, startTime, endTime } = props;
 
   const generateHeadings = () => {
     return Array.from(
       { length: endTime - startTime + 1 },
-      (_, index) => `${startTime + index}.00`
+      (_, index) => `${startTime + index}:00`
     );
   };
 
@@ -51,17 +52,20 @@ const DayResourcePlannerGrid = (props: DayResourcePlannerGridProps) => {
                     </div>
                   </td>
                   {headings.map((heading, index) => {
-                    const hour = parseInt(heading.split(".")[0]);
+                    const hour = parseInt(heading.split(":")[0]);
+                    const minute = parseInt(heading.split(":")[1] || "0");
                     const reservation = tableReservations.find(
                       (r) =>
-                        hour >= parseInt(r.startTime) &&
-                        hour < parseInt(r.endTime)
+                        hour >= parseInt(r.startTime.split(":")[0]) &&
+                        hour < parseInt(r.endTime.split(":")[0])
                     );
 
                     if (reservation && !occupiedHours[index]) {
+                      const startMinute = parseInt(reservation.startTime.split(":")[1]);
+                      const endMinute = parseInt(reservation.endTime.split(":")[1]);
                       const colspan =
                         parseInt(reservation.endTime) -
-                        parseInt(reservation.startTime);
+                        parseInt(reservation.startTime) + (endMinute > 0 ? 1 : 0); // Adjust colspan to include the end hour
                       const rowspan = reservation.resourcesIds.length;
                       const isFirstTable =
                         reservation.resourcesIds[0] === table.id;
@@ -77,6 +81,10 @@ const DayResourcePlannerGrid = (props: DayResourcePlannerGridProps) => {
                             colSpan={colspan}
                             rowSpan={rowspan}
                             className={"reservation-table-cell"}
+                            style={{
+                              paddingLeft: `${startMinute}px`, // Add left padding based on start minute
+                              paddingRight: `${60 - endMinute}px`, // Adjust right padding based on end minute
+                            }}
                           >
                             <div
                               className={"reservation-cell-content"}

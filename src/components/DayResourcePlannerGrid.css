@@ -101,7 +101,7 @@
     border-bottom: 3px solid var(--border-color);
     border-right: 2px dashed var(--border-color);
     text-align: center;
-    padding: 4px;
+    padding: 2px;
 }
 
 .reservation-table-cell:last-child {
