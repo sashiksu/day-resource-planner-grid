@@ -4,6 +4,8 @@
     --text-color-dark: #333;
     --text-color-light: #666;
     --hour-width: 60px;
+    --resource-name-width: 100px;
+    --resource-cell-height: 60px;
 }
 
 .reservation-grid {
@@ -41,18 +43,21 @@
     position: sticky;
     top: 0;
     z-index: 1;
-
+    min-width: var(--hour-width);
     width: var(--hour-width);
+    max-width: var(--hour-width);
 }
 
 .reservation-table-heading {
-    min-width: 100px;
+    min-width: var(--resource-name-width);
+    min-width: var(--resource-name-width);
+    min-width: var(--resource-name-width);
 }
 
 .reservation-table-name {
-    max-height: 50px;
-    min-height: 50px;
-    height: 50px;
+    max-height: var(--resource-cell-height);
+    min-height: var(--resource-cell-height);
+    height: var(--resource-cell-height);
     background-color: var(--bg-color-light);
     border-bottom: 3px solid var(--border-color);
 }
@@ -92,7 +97,7 @@
 }
 
 .reservation-table-cell {
-    height: 50px;
+    height: var(--resource-cell-height);
     border-bottom: 3px solid var(--border-color);
     border-right: 2px dashed var(--border-color);
     text-align: center;

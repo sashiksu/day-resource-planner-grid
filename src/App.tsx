@@ -74,8 +74,8 @@ function App() {
     <DayResourcePlannerGrid
       resources={resources}
       events={reservations}
-      startTime={9}
-      endTime={19}
+      startTime={8}
+      endTime={24}
     />
   );
 }
