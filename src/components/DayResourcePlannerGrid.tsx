@@ -61,11 +61,16 @@ const DayResourcePlannerGrid = (props: DayResourcePlannerGridProps) => {
                     );
 
                     if (reservation && !occupiedHours[index]) {
-                      const startMinute = parseInt(reservation.startTime.split(":")[1]);
-                      const endMinute = parseInt(reservation.endTime.split(":")[1]);
+                      const startMinute = parseInt(
+                        reservation.startTime.split(":")[1]
+                      );
+                      const endMinute = parseInt(
+                        reservation.endTime.split(":")[1]
+                      );
                       const colspan =
                         parseInt(reservation.endTime) -
-                        parseInt(reservation.startTime) + (endMinute > 0 ? 1 : 0); // Adjust colspan to include the end hour
+                        parseInt(reservation.startTime) +
+                        (endMinute > 0 ? 1 : 0); // Adjust colspan to include the end hour
                       const rowspan = reservation.resourcesIds.length;
                       const isFirstTable =
                         reservation.resourcesIds[0] === table.id;
@@ -83,7 +88,9 @@ const DayResourcePlannerGrid = (props: DayResourcePlannerGridProps) => {
                             className={"reservation-table-cell"}
                             style={{
                               paddingLeft: `${startMinute}px`, // Add left padding based on start minute
-                              paddingRight: `${60 - endMinute}px`, // Adjust right padding based on end minute
+                              paddingRight: `${
+                                60 - endMinute ? endMinute : 60
+                              }px`, // Adjust right padding based on end minute
                             }}
                           >
                             <div

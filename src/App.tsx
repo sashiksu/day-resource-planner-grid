@@ -9,7 +9,7 @@ function App() {
     (_, index): Resource => ({
       id: (index + 1).toString(),
       name: `Table ${index + 1}`,
-      description: Math.random() < 0.5 ? "2 X 2" : "4 X 4",
+      description: Math.random() < 0.5 ? "2 person" : "4 person",
     })
   );
 
@@ -17,9 +17,9 @@ function App() {
     {
       id: "1",
       title: "John's Birthday",
-      color: "#ffeb3b",
+      color: "#90EE90",
       startTime: "09:00",
-      endTime: "11:45",
+      endTime: "10:30",
       remarks: null,
       resourcesIds: ["1"],
     },
@@ -63,10 +63,19 @@ function App() {
       id: "6",
       title: "Mike's Dinner",
       color: "#ffeb3b",
-      startTime: "17:05",
+      startTime: "17:15",
       endTime: "19:30",
       remarks: null,
       resourcesIds: ["6"],
+    },
+    {
+      id: "7",
+      title: "John's Birthday 2",
+      color: "#90EE90",
+      startTime: "11:00",
+      endTime: "13:00",
+      remarks: null,
+      resourcesIds: ["1"],
     },
   ];
 

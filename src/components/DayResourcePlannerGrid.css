@@ -5,7 +5,7 @@
     --text-color-light: #666;
     --hour-width: 60px;
     --resource-name-width: 100px;
-    --resource-cell-height: 60px;
+    --resource-cell-height: 80px;
 }
 
 .reservation-grid {
